@@ -196,10 +196,8 @@ pipeline {
       dir('vote'){ 
         sh 'sh integration_test.sh' 
       } 
+     } 
     } 
-} 
-
-
     stage('vote-docker-package') {
       agent any
       steps {
@@ -216,7 +214,6 @@ pipeline {
 
       }
     }
-
     stage('Sonarqube') {
       agent any
       when{
@@ -237,8 +234,6 @@ pipeline {
             }
       }
     }
-
-
     stage("Quality Gate") {
         steps {
             timeout(time: 1, unit: 'HOURS') {
